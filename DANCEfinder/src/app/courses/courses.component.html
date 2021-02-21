@@ -1,0 +1,53 @@
+<section>
+  <div class="wrapper">
+    <main>
+      <div *ngIf="isEmptySearchResult" class="no-course">
+        <p>Żaden kurs nie odpowiada szukanej frazie</p>
+      </div>
+      <div *ngIf="!isCoursesExists" class="no-course">
+        <p>Obecnie nie są dodane żadne kursy. Może czas to zmienić?</p>
+      </div>
+      <ng-container *ngIf="isCoursesExists">
+        <div class="courses-categories">
+          <p class="course-name-category category">Nazwa kursu</p>
+          <p class="dance-type-category category">Rodzaj tańca</p>
+          <p class="level-of-advance-category category">Poziom zaawansowania</p>
+          <p class="price-category category">Cena</p>
+        </div>
+
+        <div
+          class="courses-container"
+          *ngFor="let course of showedCourses || [] | keyvalue | reverse; let i = index"
+          (click)="goToCourse(course)"
+          [routerLink]="['/kursy', course.key]"
+        >
+          <div class="course-name-details">
+            <div class="my-course" *ngIf="course.value?.Owned">
+              <span class="my-course-desc">Moj kurs</span>
+            </div>
+            <p>{{ course.value?.Name }}</p>
+          </div>
+          <div class="dance-type-details">
+            <p>{{ course.value?.KindOfDance }}</p>
+          </div>
+          <div class="level-of-advance-details">
+            <p>{{ course.value?.Level?.Name || 'Nie podano' }}</p>
+          </div>
+          <div class="price-details">
+            <p>{{ course.value?.Price }} PLN</p>
+          </div>
+        </div>
+        <ng-container *ngIf="coursesAmount > elements">
+          <div class="show-elements">
+            <span (click)="showMoreElements()">Więcej</span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="(elements > 4 && elements <= coursesAmount) || (elements > coursesAmount && elements > 4)">
+          <div class="show-elements">
+            <span (click)="showLessElements()">Mniej</span>
+          </div>
+        </ng-container>
+      </ng-container>
+    </main>
+  </div>
+</section>

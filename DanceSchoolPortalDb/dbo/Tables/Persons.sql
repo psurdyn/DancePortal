@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Persons]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NewId(), 
+	[AspNetUserId] NVARCHAR(128) NOT NULL UNIQUE,
+    [FirstName] NVARCHAR(100) NOT NULL, 
+    [LastName] NVARCHAR(100) NOT NULL, 
+    [Email] NVARCHAR(100) NOT NULL,
+    [Sex] NVARCHAR(10) NOT NULL,
+    [TelephoneNumber] NVARCHAR(50) NULL
+
+    CONSTRAINT [fkPersonsAspNetUsers] FOREIGN KEY (AspNetUserId) REFERENCES [dbo].[AspNetUsers](Id)
+)

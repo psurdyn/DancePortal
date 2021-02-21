@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spRooms_Remove]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE FROM dbo.Rooms
+	WHERE Id = @Id;
+END;

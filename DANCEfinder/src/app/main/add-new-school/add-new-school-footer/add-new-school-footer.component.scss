@@ -1,0 +1,17 @@
+footer {
+  height: 73px;
+  background-color: #f4f4f4;
+  box-shadow: 0 0 10px 0.2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  footer {
+    height: 102px;
+    padding: 20px;
+  }
+}

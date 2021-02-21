@@ -1,0 +1,29 @@
+<section>
+  <header>
+    <img src="assets/close-icon.svg" routerLink="../" alt="icon" />
+  </header>
+  <main>
+    <div class="wrapper">
+      <div class="students-list-container">
+        <h1>Lista kursantów:</h1>
+        <ng-container *ngIf="students | async">
+          <section class="flex-container">
+            <ng-container *ngFor="let student of students | async | keyvalue; let i = index">
+              <div class="person-container">
+                <div class="person-index">{{ i + 1 }}.</div>
+                <div class="person-name">
+                  {{ student.value?.data.FirstName }}
+                  {{ student.value?.data.LastName }}
+                </div>
+              </div>
+            </ng-container>
+          </section>
+        </ng-container>
+        <ng-container *ngIf="!(students | async)">
+          <p>Do tego kursu nie są zapisane żadne osoby.</p>
+        </ng-container>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</section>

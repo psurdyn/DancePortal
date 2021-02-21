@@ -1,0 +1,85 @@
+<section>
+  <header>
+    <img src="assets/close-icon.svg" routerLink="../" alt="icon" />
+  </header>
+  <main>
+    <div class="wrapper">
+      <div class="add-new-course-container">
+        <h1>Dodaj grupę zajęciową:</h1>
+        <form [formGroup]="addNewGroupForm">
+          <div class="flex-container">
+            <div class="title-container">
+              <p class="title">Instruktor:</p>
+              <select formControlName="instructor">
+                <option value="" disabled selected>Wybierz instruktora...</option>
+                <ng-container *ngFor="let instructor of instructors | async | keyvalue">
+                  <option value="{{ instructor.value.PersonId }}">
+                    {{ instructor.value?.FirstName }} {{ instructor.value?.LastName }}
+                  </option>
+                </ng-container>
+              </select>
+              <app-input-error
+                *ngIf="
+                  instructors &&
+                  addNewGroupForm.controls.instructor?.invalid &&
+                  addNewGroupForm.controls.instructor?.touched
+                "
+                [errorText]="errorTextMessages.instructor"
+              >
+              </app-input-error>
+              <app-input-error
+                *ngIf="
+                  !instructors &&
+                  addNewGroupForm.controls.instructor?.invalid &&
+                  addNewGroupForm.controls.instructor?.touched
+                "
+                [errorText]="errorTextMessages.noInstructor"
+              >
+              </app-input-error>
+            </div>
+            <div class="title-container">
+              <p class="title">Sala zajęciowa:</p>
+              <select formControlName="classroom">
+                <option value="" disabled selected>Wybierz salę...</option>
+                <ng-container *ngFor="let classroom of classrooms | async | keyvalue">
+                  <option value="{{ classroom.value.Id }}">Sala {{ classroom?.value.RoomNumber }}</option>
+                </ng-container>
+              </select>
+              <app-input-error
+                *ngIf="
+                  classrooms &&
+                  addNewGroupForm.controls.classroom?.invalid &&
+                  addNewGroupForm.controls.classroom?.touched
+                "
+                [errorText]="errorTextMessages.classroom"
+              >
+              </app-input-error>
+              <app-input-error
+                *ngIf="
+                  !classrooms &&
+                  addNewGroupForm.controls.classroom?.invalid &&
+                  addNewGroupForm.controls.classroom?.touched
+                "
+                [errorText]="errorTextMessages.noClassroom"
+              >
+              </app-input-error>
+            </div>
+          </div>
+          <div class="flex-container">
+            <div class="title-container">
+              <p class="title">Data rozpoczęcia</p>
+              <input type="date" formControlName="startDate" placeholder="Wpisz datę rozpoczęcia..." />
+              <app-input-error
+                *ngIf="addNewGroupForm.controls.startDate?.invalid && addNewGroupForm.controls.startDate?.touched"
+                [errorText]="errorTextMessages.startDate"
+              >
+              </app-input-error>
+            </div>
+          </div>
+          <button [disabled]="addNewGroupForm.invalid" (click)="addNewGroup()">Dodaj grupę zajęciową</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</section>

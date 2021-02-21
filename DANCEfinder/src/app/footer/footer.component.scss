@@ -1,0 +1,29 @@
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+  background-color: #dbdbdd;
+  color:  #858585;
+  padding: 25px 15px;
+  border-top: solid 1px #979797;
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1320px;
+
+    p {
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  footer .wrapper {
+    justify-content: flex-end;
+  }
+}

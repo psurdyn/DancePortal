@@ -1,0 +1,141 @@
+section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 56px - 56px - 90px);
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1320px;
+}
+
+.user-profile-container {
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  border: 2px solid #691A8C;
+  border-radius: 4px;
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 2px solid #691A8C;
+  padding-bottom: 40px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    border-left: 12px solid #691A8C;
+    padding-left: 5px;
+  }
+
+  .menu-tab-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    border-right: 5px solid #691A8C;
+    cursor: pointer;
+
+  }
+}
+
+.content-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .user-info-flex-container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .user-profile-container {
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+    border-radius: 4px;
+  }
+
+  .wrapper {
+    padding: 40px 20px;
+  }
+
+  .menu-container {
+    max-width: 300px;
+    border-right: 2px solid #691A8C;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.groups-container {
+  margin-top: 10px;
+  padding: 40px 0 10px;
+
+  h2 {
+    margin: 30px 0;
+    padding-top: 40px;
+    border-top: 2px solid #691A8C;
+  }
+}
+
+.group {
+  width: 100%;
+  padding: 10px;
+  background: #f4f4f4;
+  border: 1px solid #691A8C;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+
+  .delete-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: #E74C3C;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    span {
+      color: #fff;
+      font-size: 20px;
+    }
+  }
+}
+
+.group-element {
+  width: 100%;
+  margin: 5px;
+
+  .group-element-content {
+    background: #fff;
+    border: 1px solid #691A8C;
+    padding: 20px;
+  }
+
+  .title {
+    color: #691A8C;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0 0 5px;
+    padding-left: 10px;
+    height: 30px;
+  }
+}

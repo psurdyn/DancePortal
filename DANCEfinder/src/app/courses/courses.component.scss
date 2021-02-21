@@ -1,0 +1,167 @@
+section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 60px - 90px);
+}
+
+.my-course {
+  display: flex;
+  background-color: #691A8C;
+  padding: 5px;
+  border-radius: 4px;
+  width: 70%;
+  justify-content: center;
+
+  .my-course-desc {
+    font-weight: 700;
+    color: white;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1320px;
+}
+
+main {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  padding: 5px 0 50px;
+}
+
+.no-course {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.courses-categories,
+.courses-container {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid #dbdbbd;
+}
+
+.courses-container {
+  cursor: pointer;
+
+  &:hover {
+    background: #f4f4f4;
+  }
+}
+
+.course-name-category,
+.dance-type-category,
+.level-of-advance-category,
+.price-category,
+.date-category,
+.course-name-details,
+.dance-type-details,
+.level-of-advance-details,
+.price-details {
+  grid-column: 1 / 2;
+  margin: 15px 0;
+  padding: 0 30px;
+
+  &.category {
+    font-size: 12px;
+    line-height: 1.25;
+    letter-spacing: 0.14px;
+    text-transform: uppercase;
+    color: #858585;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1.07;
+    letter-spacing: 0.17px;
+    color: #000000;
+  }
+}
+
+.course-name-category,
+.course-name-details {
+  grid-row: 1 / 2;
+}
+
+.dance-type-category,
+.dance-type-details {
+  grid-row: 2 / 3;
+}
+
+.level-of-advance-category,
+.level-of-advance-details {
+  grid-row: 3 / 4;
+}
+
+.price-category,
+.price-details {
+  grid-row: 4 / 5;
+}
+
+.show-elements {
+  padding: 27.5px 0 0 32px;
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: 0.17px;
+    color: #691A8C;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  section {
+    min-height: calc(100vh - 56px - 56px - 90px);
+  }
+
+  .wrapper {
+    margin: 40px 0;
+    padding: 0 20px;
+  }
+
+  .courses-categories,
+  .courses-container {
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .course-name-category,
+  .dance-type-category,
+  .level-of-advance-category,
+  .price-category,
+  .date-category,
+  .course-name-details,
+  .dance-type-details,
+  .level-of-advance-details,
+  .price-details,
+  .date-details {
+    grid-row: 1 / 2;
+  }
+
+  .course-name-category,
+  .course-name-details {
+    grid-column: 1 / 2;
+  }
+
+  .dance-type-category,
+  .dance-type-details {
+    grid-column: 2 / 3;
+  }
+
+  .level-of-advance-category,
+  .level-of-advance-details {
+    grid-column: 3 / 4;
+  }
+
+  .price-category,
+  .price-details {
+    grid-column: 4 / 5;
+  }
+}

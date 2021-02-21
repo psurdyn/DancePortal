@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spKindsOfDances_Deactivate]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE FROM dbo.KindsOfDances	
+	WHERE Id = @Id;
+END

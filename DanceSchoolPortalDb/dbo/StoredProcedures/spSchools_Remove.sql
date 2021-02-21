@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spSchools_Remove]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE FROM dbo.Schools
+	WHERE Id = @Id;
+END

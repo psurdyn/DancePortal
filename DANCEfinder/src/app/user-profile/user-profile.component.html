@@ -1,0 +1,63 @@
+<section>
+  <div class="wrapper">
+    <div class="user-profile-container">
+      <div class="menu-container">
+        <h1>Profil użytkownika</h1>
+        <div class="menu-tab-container">
+          <img src="assets/user-profile-settings.svg" alt="icon" />
+          <h2>Ustawienia</h2>
+        </div>
+      </div>
+      <div class="content-container">
+        <div class="content-container-background"></div>
+        <div class="user-info-flex-container">
+          <img src="assets/dance-icon.svg" alt="icon" />
+          <div class="user-info-container">
+            <p class="name">{{ account?.FirstName }} {{ account?.LastName }}</p>
+          </div>
+        </div>
+        <form [formGroup]="updateUserDataForm">
+          <div class="form-flex-container">
+            <div class="form-input-flex-container">
+              <p>Imię:</p>
+              <input type="text" formControlName="name" placeholder="Wpisz imię..." />
+              <app-input-error
+                *ngIf="updateUserDataForm.controls.name?.invalid && updateUserDataForm.controls.name?.touched"
+                [errorText]="errorTextMessages.name"
+              >
+              </app-input-error>
+              <p>Nazwisko:</p>
+              <input type="text" formControlName="surname" placeholder="Wpisz nazwisko..." />
+              <app-input-error
+                *ngIf="updateUserDataForm.controls.surname?.invalid && updateUserDataForm.controls.surname?.touched"
+                [errorText]="errorTextMessages.surname"
+              >
+              </app-input-error>
+            </div>
+            <div class="form-input-flex-container">
+              <p>Numer telefonu:</p>
+              <input type="text" formControlName="phone" placeholder="Wpisz numer telefonu..." maxlength="9" />
+              <app-input-error
+                *ngIf="updateUserDataForm.controls.phone?.invalid && updateUserDataForm.controls.phone?.touched"
+                [errorText]="errorTextMessages.phone"
+              >
+              </app-input-error>
+              <p>Płeć:</p>
+              <select formControlName="sex">
+                <option value="" disabled selected>Wybierz płeć...</option>
+                <option value="M">Mężczyzna</option>
+                <option value="K">Kobieta</option>
+              </select>
+              <app-input-error
+                *ngIf="updateUserDataForm.controls.sex?.invalid && updateUserDataForm.controls.sex?.touched"
+                [errorText]="errorTextMessages.sex"
+              >
+              </app-input-error>
+            </div>
+          </div>
+          <button [disabled]="updateUserDataForm.invalid" (click)="updateUserData()">Zapisz</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

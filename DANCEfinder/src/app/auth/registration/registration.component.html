@@ -1,0 +1,129 @@
+<section>
+  <div class="wrapper">
+    <div class="form-container">
+      <form [formGroup]="registrationForm">
+        <h1>Rejestracja</h1>
+        <div class="flex-container">
+          <div class="input-container">
+            <p class="title">Imię:</p>
+            <input type="text" formControlName="name" placeholder="Wpisz imię..." />
+            <app-input-error
+              *ngIf="registrationForm.controls.name?.invalid && registrationForm.controls.name?.touched"
+              [errorText]="errorTextMessages.name"
+            >
+            </app-input-error>
+          </div>
+          <div class="input-container">
+            <p class="title">Nazwisko:</p>
+            <input type="text" formControlName="surname" placeholder="Wpisz nazwisko..." />
+            <app-input-error
+              *ngIf="registrationForm.controls.surname?.invalid && registrationForm.controls.surname?.touched"
+              [errorText]="errorTextMessages.surname"
+            >
+            </app-input-error>
+          </div>
+        </div>
+        <div class="flex-container">
+          <div class="input-container">
+            <p class="title">Telefon:</p>
+            <input type="text" formControlName="phone" placeholder="Wpisz telefon..." maxlength="9" />
+            <app-input-error
+              *ngIf="registrationForm.controls.phone?.invalid && registrationForm.controls.phone?.touched"
+              [errorText]="errorTextMessages.phone"
+            >
+            </app-input-error>
+          </div>
+          <div class="input-container">
+            <p class="title">Płeć:</p>
+            <select formControlName="sex">
+              <option value="" disabled selected>Wybierz płeć...</option>
+              <option value="M">Mężczyzna</option>
+              <option value="K">Kobieta</option>
+            </select>
+            <app-input-error
+              *ngIf="registrationForm.controls.sex?.invalid && registrationForm.controls.sex?.touched"
+              [errorText]="errorTextMessages.sex"
+            >
+            </app-input-error>
+          </div>
+        </div>
+        <div class="flex-container">
+          <div class="input-container">
+            <p class="title">E-mail:</p>
+            <input type="email" formControlName="email" placeholder="Wpisz e-mail..." />
+            <app-input-error
+              *ngIf="registrationForm.controls.email?.invalid && registrationForm.controls.email?.touched"
+              [errorText]="errorTextMessages.email"
+            >
+            </app-input-error>
+          </div>
+          <div class="input-container">
+            <p class="title">Hasło:</p>
+            <input type="password" formControlName="password" placeholder="Wpisz hasło..." />
+            <app-input-error
+              *ngIf="registrationForm.controls.password?.invalid && registrationForm.controls.password?.touched"
+              [errorText]="errorTextMessages.password"
+            >
+            </app-input-error>
+          </div>
+        </div>
+        <h2>Wybierz grupę:</h2>
+        <div class="checkbox-container">
+          <div class="group-checkbox" [class.checked]="isStudentChecked">
+            <img src="assets/user-black.svg" class="icon user-black" alt="icon" />
+            <img src="assets/user-white.svg" class="icon user-white" alt="icon" />
+            <img src="assets/user-purple.svg" class="icon user-purple" alt="icon" />
+            <p>Kursant</p>
+            <label>
+              <input
+                type="checkbox"
+                formControlName="group"
+                (change)="setUserGroup((isStudentChecked = !isStudentChecked), group.STUDENT)"
+              />
+            </label>
+          </div>
+          <div class="group-checkbox" [class.checked]="isInstructorChecked">
+            <img src="assets/trainer-black.svg" class="icon trainer-black" alt="icon" />
+            <img src="assets/trainer-white.svg" class="icon trainer-white" alt="icon" />
+            <img src="assets/trainer-purple.svg" class="icon trainer-purple" alt="icon" />
+            <p>Instruktor</p>
+            <label>
+              <input
+                type="checkbox"
+                formControlName="group"
+                (change)="setUserGroup((isInstructorChecked = !isInstructorChecked), group.INSTRUCTOR)"
+              />
+            </label>
+          </div>
+          <div class="group-checkbox" [class.checked]="isOwnerChecked">
+            <img src="assets/owner-black.svg" class="icon owner-black" alt="icon" />
+            <img src="assets/owner-white.svg" class="icon owner-white" alt="icon" />
+            <img src="assets/owner-purple.svg" class="icon owner-purple" alt="icon" />
+            <p>Właściciel</p>
+            <label>
+              <input
+                type="checkbox"
+                formControlName="group"
+                (change)="setUserGroup((isOwnerChecked = !isOwnerChecked), group.OWNER)"
+              />
+            </label>
+          </div>
+          <app-input-error
+            *ngIf="registrationForm.controls.group?.invalid && registrationForm.controls.group?.touched"
+            [errorText]="errorTextMessages.group"
+          >
+          </app-input-error>
+        </div>
+        <button [disabled]="registrationForm.invalid" (click)="dbRegisterUser()">Zarejestruj się</button>
+
+        <!-- FIREBASE -->
+        <!-- <button [disabled]="registrationForm.invalid" (click)="registerUser()">Zarejestruj się</button> -->
+        <a routerLink="/login">
+          Posiadasz już konto?
+          <p>Zaloguj się</p>
+        </a>
+      </form>
+      <div class="background-container"></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+<section>
+  <header>
+    <img src="assets/close-icon.svg" routerLink="../" alt="icon" />
+  </header>
+  <main>
+    <div class="wrapper">
+      <div class="add-new-instructor-container">
+        <h1>Dodaj instruktora:</h1>
+        <form [formGroup]="addNewInstructorForm">
+          <div class="flex-container">
+            <div class="title-container">
+              <p class="title">Dostępni instruktorzy:</p>
+              <select formControlName="instructor">
+                <option value="" disabled selected>Wybierz instruktora...</option>
+                <ng-container *ngFor="let instructor of instructors | async">
+                  <option value="{{ instructor.Id }}">{{ instructor.FirstName }} {{ instructor.LastName }}</option>
+                </ng-container>
+              </select>
+              <app-input-error
+                *ngIf="
+                  addNewInstructorForm.controls.instructor?.invalid && addNewInstructorForm.controls.instructor?.touched
+                "
+                [errorText]="errorTextMessages.instructor"
+              >
+              </app-input-error>
+            </div>
+          </div>
+          <button [disabled]="addNewInstructorForm.invalid" (click)="addNewInstructor()">Dodaj instruktora</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</section>

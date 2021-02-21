@@ -1,0 +1,38 @@
+.add-new-school-wrapper-background {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  position: absolute;
+  top: 0;
+
+  .add-new-school-wrapper {
+    font-family: "Lato", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 3;
+  }
+}
+
+@media (min-width: 768px) {
+  .add-new-school-wrapper {
+    position: absolute;
+    margin-top: 20px;
+    left: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .add-new-school-wrapper-background {
+    margin-right: auto;
+    margin-left: auto;
+    height: auto;
+  }
+}
+
+
+

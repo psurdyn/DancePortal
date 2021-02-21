@@ -1,0 +1,346 @@
+main {
+  min-height: calc(100vh - 60px - 90px);
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+
+  .main-container {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    border: 1px solid #dbdbdb;
+  }
+}
+
+.my-school {
+  display: flex;
+  background-color: #691A8C;
+  padding: 5px;
+  border-radius: 4px;
+
+  .my-school-desc {
+    font-weight: 700;
+    color: white;
+  }
+}
+
+.aside-top p:nth-child(n+2) {
+  padding-top: 10px;
+}
+
+.schools-section-container {
+  display: flex;
+  flex-direction: column;
+  padding: 31px 20px 17px;
+  background-color: #fff;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #dbdbdb;
+  border-top: 1px solid #dbdbdb;
+  padding: 23.5px 0 24px;
+
+  a {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    line-height: 50px;
+    border-radius: 4px;
+    background-color: #691A8C;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.14px;
+    height: 50px;
+    cursor: pointer;
+
+    &:last-child {
+      background-color: #691A8C;
+      color: #fff;
+    }
+  }
+}
+
+.no-school {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.schools-categories,
+.schools-container {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid #dbdbbd;
+
+  &.schools-categories {
+    display: none;
+  }
+
+  &.schools-container {
+    cursor: pointer;
+    padding: 15px 0;
+
+    &:hover {
+      background: #f4f4f4;
+    }
+  }
+
+  .school-details-category,
+  .dance-type-category,
+  .contact-details-category,
+  .school-details-container,
+  .dance-type-container,
+  .contact-details-container {
+
+    &.category,
+    .school-details {
+      font-size: 12px;
+      line-height: 1.25;
+      letter-spacing: 0.14px;
+      color: #858585;
+    }
+
+    &.category {
+      text-transform: uppercase;
+    }
+
+    &:not(.category) {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      & p,
+      & h3 {
+        margin: 0;
+      }
+
+      .school-name,
+      .school-phone-number,
+      .school-email {
+        font-size: 14px;
+        font-weight: 900;
+        line-height: 1.07;
+        letter-spacing: 0.17px;
+        color: #000000;
+      }
+
+      .school-name,
+      .school-phone-number {
+        padding-bottom: 7px;
+      }
+
+      .dance-type {
+        font-size: 14px;
+        line-height: 1.5;
+        letter-spacing: 0.12px;
+        color: #691A8C;
+      }
+    }
+  }
+
+  .school-details-container {
+    grid-row: 1 / 2;
+  }
+
+  .dance-type-container {
+    grid-row: 2 / 3;
+  }
+
+  .contact-details-container {
+    grid-row: 3 / 4;
+  }
+}
+
+.show-elements {
+  padding: 27.5px 0 0 32px;
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: 0.17px;
+    color: #691A8C;
+    cursor: pointer;
+  }
+}
+
+.aside-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  margin: 10px 0 50px;
+
+  .aside-top {
+    display: block;
+    padding: 18.8px 30px 10px;
+    background-color: #691A8C;
+    color: #fff;
+    overflow-y: scroll;
+    margin-top: 20px;
+
+    h1 {
+      margin-top: 0px;
+      margin-bottom: 10px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #fff;
+      font-size: 22px;
+      letter-spacing: 0.26px;
+      font-weight: 900;
+    }
+
+    div {
+      width: 100%;
+      font-size: 14px;
+      line-height: 1.43;
+      letter-spacing: 0.17px;
+      margin-bottom: 42px;
+      text-align: justify;
+
+      @media (min-width: 1200px) {
+        width: 293px;
+      }
+    }
+
+    h2 {
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.14px;
+    }
+  }
+
+  .aside-bottom {
+    background-color: #fff;
+    display: block;
+    padding: 14px 20px 20px 20px;
+    font-size: 16px;
+    font-weight: 900;
+    border: 1px solid #dbdbdb;
+    margin-top: 20px;
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+}
+
+.aside-content {
+  height: 250px;
+}
+
+@media (min-width: 768px) {
+  main {
+    max-width: 1320px;
+    min-height: calc(100vh - 56px - 56px - 90px);
+    padding: 40px 20px;
+    margin: 0 auto;
+
+    .main-container {
+      padding-bottom: 50px;
+      flex-grow: 1;
+      background-color: #fff;
+    }
+  }
+
+  .schools-section-container {
+    padding: 0;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 65px;
+    border: none;
+    padding: 16px 0 0 20px;
+    margin-bottom: 20px;
+
+    a {
+      width: 320px;
+      border-radius: 10px;
+      margin: 0;
+
+      &:last-child {
+        margin: 0 0 0 20px;
+      }
+    }
+  }
+
+  .schools-categories,
+  .schools-container {
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+
+    &.schools-categories {
+      display: grid;
+    }
+
+    &.schools-container {
+      padding: 0;
+    }
+
+    .school-details-category,
+    .dance-type-category,
+    .contact-details-category,
+    .school-details-container,
+    .dance-type-container,
+    .contact-details-container {
+      grid-row: 1 / 2;
+      padding: 0 30px;
+
+      &:not(.category) {
+        margin: 15px 0;
+      }
+    }
+
+    .school-details-category,
+    .school-details-container {
+      grid-column: 1 / 2;
+    }
+
+    .dance-type-category,
+    .dance-type-container {
+      grid-column: 2 / 3;
+    }
+
+    .contact-details-category,
+    .contact-details-container {
+      grid-column: 3 / 4;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+
+  main {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 40px 20px;
+  }
+
+  .main-container {
+    max-width: 840px;
+  }
+
+  .aside-container {
+    margin: 0;
+    justify-content: initial;
+    flex-direction: column;
+
+    .aside-top {
+      margin-bottom: 39.2px;
+    }
+
+    .aside-top,
+    .aside-bottom {
+      height: 100%;
+      margin-top: 0;
+    }
+  }
+}

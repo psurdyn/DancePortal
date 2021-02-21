@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spPersons_Deactivate]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE FROM dbo.Persons
+	WHERE Id = @Id;
+END

@@ -1,0 +1,26 @@
+<div class="login-wrapper">
+  <div class="login-wrapper-background">
+    <form (ngSubmit)="dbLogin()" #loginFrom="ngForm">
+      <span>Email</span>
+      <input [(ngModel)]="email" type="email" name="email" /><br />
+      <span>Hasło</span>
+      <input [(ngModel)]="password" type="password" name="password" /><br />
+      <app-input-error *ngIf="isLoginError" [errorText]="errorLoginOrEmail"> </app-input-error>
+      <div [ngClass]="{ isLoading: isLoading }">
+        <input type="submit" value="ZALOGUJ" />
+      </div>
+    </form>
+    <div class="flex-container">
+      <a (click)="useWithoutLogin()">Skorzystaj anonimowo</a>
+      <a routerLink="/registration">
+        Nie posiadasz konta?
+        <p>Zarejestruj się.</p>
+      </a>
+    </div>
+  </div>
+</div>
+<!--
+<app-success-snackbar
+  *ngIf="service.isSuccessSnackbarOpen"
+  [errorMessage]="service.successSnackbarMessage"
+></app-success-snackbar> -->

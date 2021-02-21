@@ -1,0 +1,82 @@
+<main>
+  <h1>Dodaj nową szkołę:</h1>
+  <form [formGroup]="addSchoolForm">
+    <div class="title-container">
+      <p class="title">Nazwa szkoły:</p>
+      <input type="text" formControlName="schoolName" placeholder="Wpisz nazwę szkoły..." />
+      <app-input-error
+        *ngIf="addSchoolForm.controls.schoolName?.invalid && addSchoolForm.controls.schoolName?.touched"
+        [errorText]="errorTextMessages.schoolName"
+      >
+      </app-input-error>
+    </div>
+    <div class="flex-container">
+      <div class="title-container">
+        <p class="title">Kod pocztowy:</p>
+        <input type="text" formControlName="postalCode" mask="00-000" placeholder="Wpisz kod pocztowy..." />
+        <app-input-error
+          *ngIf="addSchoolForm.controls.postalCode?.invalid && addSchoolForm.controls.postalCode?.touched"
+          [errorText]="errorTextMessages.postalCode"
+        >
+        </app-input-error>
+      </div>
+      <div class="title-container">
+        <p class="title">Miasto:</p>
+        <input type="text" formControlName="city" placeholder="Wpisz miasto..." />
+        <app-input-error
+          *ngIf="addSchoolForm.controls.city?.invalid && addSchoolForm.controls.city?.touched"
+          [errorText]="errorTextMessages.city"
+        >
+        </app-input-error>
+      </div>
+    </div>
+    <div class="title-container">
+      <p class="title">Ulica i numer:</p>
+      <input type="text" formControlName="street" placeholder="Wpisz ulicę i numer..." />
+      <app-input-error
+        *ngIf="addSchoolForm.controls.street?.invalid && addSchoolForm.controls.street?.touched"
+        [errorText]="errorTextMessages.street"
+      >
+      </app-input-error>
+    </div>
+    <div class="title-container">
+      <p class="title">Strona internetowa:</p>
+      <input type="text" formControlName="website" placeholder="Wpisz adres strony internetowej..." />
+      <app-input-error
+        *ngIf="addSchoolForm.controls.website?.invalid && addSchoolForm.controls.website?.touched"
+        [errorText]="errorTextMessages.website"
+      >
+      </app-input-error>
+    </div>
+    <div class="flex-container">
+      <div class="title-container">
+        <p class="title">Telefon:</p>
+        <input type="text" formControlName="phoneNumber" placeholder="Wpisz telefon..." maxlength="9" />
+        <app-input-error
+          *ngIf="addSchoolForm.controls.phoneNumber?.invalid && addSchoolForm.controls.phoneNumber?.touched"
+          [errorText]="errorTextMessages.phoneNumber"
+        >
+        </app-input-error>
+      </div>
+      <div class="title-container">
+        <p class="title">Adres e-mail:</p>
+        <input type="text" formControlName="email" placeholder="Wpisz e-mail..." />
+        <app-input-error
+          *ngIf="addSchoolForm.controls.email?.invalid && addSchoolForm.controls.email?.touched"
+          [errorText]="errorTextMessages.email"
+        >
+        </app-input-error>
+      </div>
+    </div>
+    <div class="title-container">
+      <p class="title">Opis szkoły:</p>
+      <textarea formControlName="about" placeholder="Dodaj opis szkoły..."></textarea>
+      <app-input-error
+        *ngIf="addSchoolForm.controls.about?.invalid && addSchoolForm.controls.about?.touched"
+        [errorText]="errorTextMessages.about"
+      >
+      </app-input-error>
+    </div>
+    <button [disabled]="addSchoolForm.invalid" type="button" (click)="addNewSchool()">Dodaj szkołę</button>
+  </form>
+</main>

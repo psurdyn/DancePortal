@@ -1,0 +1,77 @@
+<section>
+  <header>
+    <img src="assets/close-icon.svg" routerLink="../" alt="icon" />
+  </header>
+  <main>
+    <div class="wrapper">
+      <div class="add-new-classroom-container">
+        <h1>Zapisz się na kurs:</h1>
+        <div class="online-payment" *ngIf="onlinePayment">
+          <form [formGroup]="onlinePaymentForm">
+            <h2>Zapłać online:</h2>
+            <div class="flex-container">
+              <div class="title-container">
+                <p class="title">Twój numer konta:</p>
+                <input
+                  type="text"
+                  formControlName="accountNumber"
+                  maxlength="26"
+                  placeholder="Wpisz twój numer konta..."
+                />
+                <app-input-error
+                  *ngIf="
+                    onlinePaymentForm.controls.accountNumber?.invalid &&
+                    onlinePaymentForm.controls.accountNumber?.touched
+                  "
+                  [errorText]="errorTextMessages.accountNumber"
+                >
+                </app-input-error>
+              </div>
+              <div class="title-container">
+                <p class="title">Na rachunek:</p>
+                <div class="information-container">
+                  <p>65 1090 2402 4915 1467 8486 2249</p>
+                </div>
+              </div>
+            </div>
+            <div class="flex-container">
+              <div class="title-container discount-code">
+                <p class="title">Kod promocyjny (-10%):</p>
+                <input type="text" formControlName="discountCode" placeholder="Wpisz kod promocyjny..." />
+              </div>
+            </div>
+            <div class="flex-container">
+              <div class="title-container">
+                <p class="title">Kwota do przelewu:</p>
+                <div class="information-container">
+                  <p>{{ getPrice() }} PLN</p>
+                </div>
+              </div>
+            </div>
+            <button class="payment-button" [disabled]="onlinePaymentForm.invalid" (click)="signUpToCourse()">
+              Płacę
+            </button>
+          </form>
+        </div>
+        <div class="on-site-payment" *ngIf="!onlinePayment">
+          <h2>Zapłać na miejscu:</h2>
+          <div class="flex-container">
+            <div class="title-container">
+              <p class="title">Kwota do zapłaty:</p>
+              <div class="information-container">
+                <p>{{ getPrice() }} PLN</p>
+              </div>
+            </div>
+          </div>
+          <button class="payment-button" (click)="signUpToCourse()">Zapisz się</button>
+        </div>
+        <h2 class="change-payment-heading">Zmień sposób zapisu i zapłaty:</h2>
+        <div class="buttons-container">
+          <button (click)="changePaymentForm(true)">Zapisz się i opłać online</button>
+          <button (click)="changePaymentForm(false)">Zapisz się i opłać na miejscu</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</section>

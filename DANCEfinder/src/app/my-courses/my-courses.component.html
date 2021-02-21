@@ -1,0 +1,56 @@
+<section>
+  <div class="wrapper">
+    <div class="user-profile-container">
+      <div class="menu-container">
+        <h1>Zamówienia</h1>
+        <div class="menu-tab-container">
+          <h2>Lista kursów</h2>
+        </div>
+      </div>
+      <div class="content-container">
+        <div class="group" *ngFor="let group of groups | async | keyvalue; let i = index">
+          <div class="title-group">
+            Grupa {{ i }}: {{ group.value?.data?.danceData?.Name }}
+            {{ group.value?.group?.StartDate | date: 'dd-MM' }} p-{{ group.value?.data?.roomData?.RoomNumber }}
+          </div>
+          <div class="container">
+            <div class="group-element">
+              <p class="title">data:</p>
+              <div class="group-element-content">
+                {{ group.value?.group?.StartDate | date: 'dd-MM-yyyy' }}
+                {{ group.value?.StartDate | date: 'dd-MM-yyyy' }}
+              </div>
+            </div>
+            <div class="group-element">
+              <p class="title">Kurs:</p>
+              <div class="group-element-content">{{ group.value?.data?.courseData?.Name }}</div>
+            </div>
+            <div class="group-element">
+              <p class="title">Szkoła:</p>
+              <div class="group-element-content">
+                {{ group.value?.data?.schoolData?.Name }}
+              </div>
+            </div>
+            <div class="group-element">
+              <p class="title">Sala:</p>
+              <div class="group-element-content">
+                {{ group.value?.data?.roomData?.RoomNumber }}
+              </div>
+            </div>
+            <div class="group-element">
+              <p class="title">Taniec:</p>
+              <div class="group-element-content">
+                {{ group.value?.data?.danceData?.Name }}
+              </div>
+            </div>
+          </div>
+          <div class="container" *ngFor="let client of group.value.clients">
+            <ol>
+              <li>{{ client.FirstName }} {{ client.LastName }}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spOrders_Remove]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE FROM dbo.Orders
+	WHERE Id = @Id;
+END

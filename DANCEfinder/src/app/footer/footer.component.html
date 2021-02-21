@@ -1,0 +1,17 @@
+<footer>
+  <div class="wrapper">
+    <p>&copy;&nbsp; Marcin Kucharski & Piotr Surdyn, 2020</p>
+  </div>
+  <app-delete-confirmation-snackbar
+  *ngIf="service.isConfirmationSnackbarOpen"
+  [errorMessage]="service.confirmationSnackbarMessage"
+></app-delete-confirmation-snackbar>
+<app-success-snackbar
+  *ngIf="service.isSuccessSnackbarOpen"
+  [errorMessage]="service.successSnackbarMessage"
+></app-success-snackbar>
+<app-failure-snackbar
+  *ngIf="service.isFailureSnackbarOpen"
+  [errorMessage]="service.successSnackbarMessage"
+></app-failure-snackbar>
+</footer>

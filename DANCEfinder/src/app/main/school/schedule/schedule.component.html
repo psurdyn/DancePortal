@@ -1,0 +1,67 @@
+<section class="modal">
+  <header>
+    <img src="assets/close-icon.svg" routerLink="../" alt="icon" />
+  </header>
+  <main>
+    <div class="wrapper">
+      <section>
+        <h2>Grafik kursów:</h2>
+        <div class="days-container">
+          <div class="day" *ngFor="let day of sortedDays" (click)="setGroupsByDay(day)">
+            <p>{{ day }}</p>
+          </div>
+        </div>
+        <h3>{{ chosenDay }}</h3>
+        <div class="group-container">
+          <div class="group" *ngFor="let group of getGroupsByDay(groups) | keyvalue">
+            <div class="group-element">
+              <p class="title">Nazwa:</p>
+              <p class="group-element-content">{{ group.value?.Name }}</p>
+            </div>
+            <div class="group-element">
+              <p class="title">Rodzaj tańca:</p>
+              <p class="group-element-content">{{ group.value?.groupData.kindOfDanceData.Name }}</p>
+            </div>
+            <div class="group-element">
+              <p class="title">Poziom:</p>
+              <p class="group-element-content">{{ group.value?.Level?.Name }}</p>
+            </div>
+            <div class="group-element">
+              <p class="title">Cena:</p>
+              <p class="group-element-content">{{ group.value?.Price }} PLN</p>
+            </div>
+            <div class="group-element">
+              <p class="title">Data rozpoczęcia:</p>
+              <p class="group-element-content">{{ group.value?.data.StartDate | date: 'dd.MM.yyyy' }}</p>
+            </div>
+            <div class="group-element">
+              <p class="title">Sala:</p>
+              <p class="group-element-content">{{ group.value?.groupData.roomData.RoomNumber }}</p>
+            </div>
+            <div class="group-element">
+              <p class="title">Instruktor:</p>
+              <p class="group-element-content">
+                {{ group.value?.groupData.instructorData.person.FirstName }}
+                {{ group.value?.groupData.instructorData.person.LastName }}
+              </p>
+            </div>
+            <div
+              class="flex-container"
+              *ngIf="!(useWithoutLogin || instructorPrivileges || ownerPrivileges || allPrivileges)"
+            >
+              <button routerLink="./zapisz-sie" (click)="getGroupData(group)">Zapisz się</button>
+            </div>
+            <div
+              class="flex-container"
+              *ngIf="(instructorPrivileges || ownerPrivileges || allPrivileges) && !useWithoutLogin"
+            >
+              <button routerLink="./lista-kursantow" (click)="getGroupData(group)">Pokaż kursantów</button>
+            </div>
+          </div>
+        </div>
+        <p class="no-courses" *ngIf="getGroupsByDay(groups).length < 1">W tym dniu nie ma żadnych kursów.</p>
+      </section>
+    </div>
+  </main>
+  <footer></footer>
+</section>

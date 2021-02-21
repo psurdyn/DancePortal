@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[spRooms_GetById]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT Id, RoomNumber
+	FROM dbo.Rooms
+	WHERE Id = @Id;
+END

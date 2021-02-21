@@ -1,0 +1,129 @@
+<header>
+  <div class="mobile-header">
+    <span class="logo-home-page">
+      <div class="logo-home-page">
+        <a routerLink="main" class="logo">
+          <img src="assets/dance-icon-black.svg" alt="icon" />
+          <span>DANCE</span>finder
+        </a>
+      </div>
+    </span>
+    <div *ngIf="(service.account | async) || useWithoutLogin" class="upper-mobile-header-right">
+      <nav>
+        <div (click)="showMenu()">
+          <div id="bar1" class="bar"></div>
+          <div id="bar2" class="bar"></div>
+          <div id="bar3" class="bar"></div>
+        </div>
+        <ul *ngIf="isMenu" class="mobile-menu">
+          <li><div>DANCEfinder</div></li>
+          <li><div routerLink="/main">Szkoły tańca</div></li>
+          <li>
+            <div routerLink="/kursy" *ngIf="allPrivileges || ownerPrivileges">
+              <ng-container>Kursy</ng-container>
+            </div>
+          </li>
+          <li class="search-bar">
+            <img (click)="changeSearchStatus()" src="assets/loupe-icon.svg" />
+            <input
+              *ngIf="(isSearchMobile || useWithoutLogin) && router.url === '/main'"
+              class="inputSearch"
+              [(ngModel)]="searchTermMobile"
+              (input)="onSearchMobile()"
+              type="search"
+              placeholder="Wyszukaj szkołę..."
+            />
+            <input
+              *ngIf="isSearchMobile && !useWithoutLogin && router.url === '/kursy'"
+              class="inputSearch"
+              [(ngModel)]="searchTermMobile"
+              (input)="onSearchMobile()"
+              type="search"
+              placeholder="Wyszukaj kurs..."
+            />
+          </li>
+          <li>
+            <div class="mobile-menu-name" routerLink="/profil-uzytkownika">
+              {{ (service.account | async)?.FirstName }} {{ (service.account | async)?.LastName }}
+            </div>
+          </li>
+          <li><div (click)="logout()" routerLink="/login">WYLOGUJ</div></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="tablet-header">
+    <div class="upper-header">
+      <div class="wrapper">
+        <span class="logo-home-page">
+          <div class="logo-home-page">
+            <a routerLink="main" class="logo">
+              <img src="assets/dance-icon-black.svg" alt="icon" />
+              <span>DANCE</span>finder
+            </a>
+          </div>
+        </span>
+        <div *ngIf="service.account | async" class="upper-header-right">
+          <div class="user-profile-container margin-right" *ngIf="allPrivileges" routerLink="/zamowienia">
+            <p class="user-desktop">Zamówienia</p>
+          </div>
+          <div
+            class="user-profile-container margin-right"
+            *ngIf="!(allPrivileges || ownerPrivileges || useWithoutLogin)"
+            routerLink="/moje-kursy"
+          >
+            <p class="user-desktop">Moje kursy</p>
+          </div>
+          <div class="user-profile-container" routerLink="/profil-uzytkownika">
+            <img src="assets/user.svg" />
+            <p class="user-desktop">
+              {{ (service.account | async)?.FirstName }} {{ (service.account | async)?.LastName }}
+            </p>
+          </div>
+          <input class="logo-home-page logout" (click)="logout()" routerLink="/login" type="submit" value="WYLOGUJ" />
+        </div>
+        <div *ngIf="useWithoutLogin" class="upper-header-right">
+          <div class="use-without-login">
+            <div class="log-in" (click)="redirectToInitialPage('login')">
+              <p>Zaloguj się</p>
+            </div>
+            <div class="register" (click)="redirectToInitialPage('registration')">
+              <p>Zarejestruj się</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lower-header">
+      <div class="wrapper">
+        <div *ngIf="(service.account | async) || useWithoutLogin" class="lower-header-nav">
+          <div routerLinkActive="router-active" class="lower-header-nav-button" routerLink="/main">Szkoły tańca</div>
+          <div
+            routerLinkActive="router-active"
+            *ngIf="allPrivileges || ownerPrivileges"
+            class="lower-header-nav-button"
+            routerLink="/kursy"
+          >
+            <ng-container>Kursy</ng-container>
+          </div>
+        </div>
+        <input
+          class="inputSearch"
+          *ngIf="((service.account | async) || useWithoutLogin) && router.url === '/main'"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+          type="search"
+          placeholder="Wyszukaj szkołę..."
+        />
+        <input
+          class="inputSearch"
+          *ngIf="(service.account | async) && !useWithoutLogin && router.url === '/kursy'"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+          type="search"
+          placeholder="Wyszukaj kurs..."
+        />
+      </div>
+    </div>
+  </div>
+</header>

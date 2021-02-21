@@ -1,0 +1,97 @@
+<main>
+  <div class="main-container">
+    <article class="schools-section-container">
+      <section class="buttons" *ngIf="(ownerPrivileges || allPrivileges) && !useWithoutLogin">
+        <a (click)="service.isAddSchoolModalVisible()">DODAJ SZKOŁĘ</a>
+      </section>
+      <section>
+        <div *ngIf="isEmptySearchResult" class="no-school">
+          <p>Żadna szkoła nie odpowiada szukanej frazie</p>
+        </div>
+        <div *ngIf="!isSchoolsExists" class="no-school">
+          <p>Obecnie nie są dodane żadne szkoły. Może czas to zmienić?</p>
+        </div>
+        <ng-container *ngIf="isSchoolsExists">
+          <div class="schools-categories">
+            <p class="school-details-category category">Nazwa / Adres</p>
+            <p class="dance-type-category category">Rodzaj tańca</p>
+            <p class="contact-details-category category">Kontakt</p>
+          </div>
+          <div
+            class="schools-container"
+            *ngFor="let school of showSchools || [] | keyvalue | reverse | slice: showSchools:elements; let i = index"
+            (click)="showSchool(school)"
+            [routerLink]="['/main', school.key]"
+          >
+            <div class="school-details-container">
+              <div class="school-email my-school" *ngIf="school.value?.Owned">
+                <span class="my-school-desc">Moja szkoła</span>
+              </div>
+              <h3 class="school-name">{{ school.value?.Name || school?.Name }}</h3>
+              <div class="school-details">
+                <p>{{ school.value?.PostalCode }} {{ school.value?.City }}</p>
+                <p>{{ school.value?.Street }}</p>
+              </div>
+            </div>
+            <div class="dance-type-container">
+              <ng-container *ngIf="school?.value.KindsOfDance">
+                <p class="dance-type">{{ school?.value.KindsOfDance }}</p>
+              </ng-container>
+              <ng-container *ngIf="!school?.value.KindsOfDance">
+                <p class="dance-type">Nie podano</p>
+              </ng-container>
+            </div>
+            <div class="contact-details-container">
+              <p class="school-phone-number">{{ school.value?.TelephoneNumber || school?.TelephoneNumber }}</p>
+              <p class="school-email">{{ school.value?.EmailAddress || school?.EmailAddress }}</p>
+            </div>
+          </div>
+          <ng-container *ngIf="schoolsAmount > elements">
+            <div class="show-elements">
+              <span (click)="showMoreElements()">Więcej</span>
+            </div>
+          </ng-container>
+          <ng-container
+            *ngIf="(elements > 4 && elements <= schoolsAmount) || (elements > schoolsAmount && elements > 4)"
+          >
+            <div class="show-elements">
+              <span (click)="showLessElements()">Mniej</span>
+            </div>
+          </ng-container>
+        </ng-container>
+      </section>
+    </article>
+  </div>
+  <div class="aside-container">
+    <aside class="aside-top">
+      <div class="aside-content">
+        <h1>Dlaczego warto tańczyć?</h1>
+        <div>
+          <p>Argumentów jest wiele, ale skupmy się na najważniejszych aspektach:</p>
+          <p>
+            Życie towarzyskie – wesela, imprezy po prostu bez tańca nie funkcjonują. Nawiązywanie nowych znajomości i
+            relacji dużo łatwiej się nawiązuje, kiedy czujesz się pewnie na parkiecie. W wielu kulturach nieodłącznym
+            elementem każdego spotkania w gronie rodziny lub przyjaciół jest właśnie taniec.
+          </p>
+          <p>
+            Postawa ciała, czy sposób poruszania się – jednym z celów kursu tańca jest wypracowanie w miłych
+            towarzystwie poprawnych nawyków. Lepiej można się zaprezentować, kiedy Twoja sylwetka jest w pionie,
+            sprawiasz wtedy wrażenie pewnej siebie osoby nie wspominając o gracji i seksapilu.
+          </p>
+          <p>Taniec zbliża - wiele osób swojego partnera poznało właśnie na parkiecie w tańcu</p>
+          <p>
+            Taniec jest zdrowy! – pobudza Twoje krążenie i świetnie wpływa na cały Twój organizm jak każda forma ruchu
+          </p>
+        </div>
+      </div>
+    </aside>
+    <!-- <aside class="aside-bottom">
+      <h2>Statystyki</h2>
+      <div *ngIf="chartReady">
+        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
+      </div>
+    </aside> -->
+  </div>
+</main>
+
+<app-add-new-school></app-add-new-school>

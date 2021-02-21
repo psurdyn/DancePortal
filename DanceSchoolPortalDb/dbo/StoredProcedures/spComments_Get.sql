@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spComments_Get]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT * FROM dbo.Comments
+	WHERE Id = @Id;
+END

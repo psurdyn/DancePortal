@@ -1,0 +1,67 @@
+<section>
+  <header>
+    <img src="assets/close-icon.svg" routerLink="../" alt="icon" />
+  </header>
+  <main>
+    <div class="wrapper">
+      <div class="add-new-course-container">
+        <h1>Dodaj nowy kurs:</h1>
+        <form [formGroup]="addNewCourseForm">
+          <div class="flex-container">
+            <div class="title-container">
+              <p class="title">Nazwa:</p>
+              <input type="text" formControlName="name" placeholder="Wpisz nazwę kursu..." />
+              <app-input-error
+                *ngIf="addNewCourseForm.controls.name?.invalid && addNewCourseForm.controls.name?.touched"
+                [errorText]="errorTextMessages.name"
+              >
+              </app-input-error>
+            </div>
+            <div class="title-container">
+              <p class="title">Poziom zaawansowania:</p>
+              <select formControlName="level">
+                <option value="" disabled selected>Wybierz poziom...</option>
+                <ng-container *ngFor="let level of levelsOfAdvance | async">
+                  <option value="{{ level?.Id }}">{{ level?.Name }}</option>
+                </ng-container>
+              </select>
+              <app-input-error
+                *ngIf="addNewCourseForm.controls.level?.invalid && addNewCourseForm.controls.level?.touched"
+                [errorText]="errorTextMessages.level"
+              >
+              </app-input-error>
+            </div>
+          </div>
+          <div class="flex-container">
+            <div class="title-container">
+              <p class="title">Cena (PLN):</p>
+              <input type="text" formControlName="price" placeholder="Wpisz cenę kursu..." />
+              <app-input-error
+                *ngIf="addNewCourseForm.controls.price?.invalid && addNewCourseForm.controls.price?.touched"
+                [errorText]="errorTextMessages.price"
+              >
+              </app-input-error>
+            </div>
+            <div class="title-container">
+              <p class="title">Rodzaj tańca:</p>
+              <select formControlName="dance">
+                <option value="" disabled selected>Wybierz taniec...</option>
+                <ng-container *ngFor="let dance of dances | async">
+                  <!-- todo: check why IsActive return false when in db is true -->
+                  <option value="{{ dance?.Id }}" *ngIf="!dance.IsActive">{{ dance?.Name }}</option>
+                </ng-container>
+              </select>
+              <app-input-error
+                *ngIf="addNewCourseForm.controls.dance?.invalid && addNewCourseForm.controls.dance?.touched"
+                [errorText]="errorTextMessages.dance"
+              >
+              </app-input-error>
+            </div>
+          </div>
+          <button [disabled]="addNewCourseForm.invalid" (click)="addNewCourse()">Dodaj kurs</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</section>

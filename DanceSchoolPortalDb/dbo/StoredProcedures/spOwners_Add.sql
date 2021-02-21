@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[spOwners_Add]
+	@PersonId UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	INSERT INTO dbo.Owners
+	(PersonId)
+	VALUES (@PersonId);
+END

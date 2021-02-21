@@ -1,0 +1,14 @@
+<section>
+  <div class="snackbar">
+    <div class="warning-container">
+      <h1>Uwaga!</h1>
+    </div>
+    <div class="message-container">
+      <p>{{ errorMessage }}</p>
+      <div class="buttons-container">
+        <button class="button-approve" (click)="approveDeleteAction()">Tak</button>
+        <button class="button-deny" (click)="denyDeleteAction()">Nie</button>
+      </div>
+    </div>
+  </div>
+</section>

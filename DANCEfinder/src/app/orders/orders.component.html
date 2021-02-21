@@ -1,0 +1,44 @@
+<section>
+  <div class="wrapper">
+    <div class="user-profile-container">
+      <div class="menu-container">
+        <h1>Zamówienia</h1>
+        <div class="menu-tab-container">
+          <h2>Lista zamówień</h2>
+        </div>
+      </div>
+      <div class="content-container">
+        <div class="group" *ngFor="let order of orders | async | keyvalue">
+          <div class="group-element">
+            <p class="title">Imie i nazwisko klienta:</p>
+            <div class="group-element-content">
+              {{ order.value?.Person.FirstName }} {{ order.value?.Person.LastName }}
+            </div>
+          </div>
+          <div class="group-element">
+            <p class="title">Rabat:</p>
+            <div class="group-element-content">{{ order.value?.Discount }} %</div>
+          </div>
+          <div class="group-element">
+            <p class="title">Kwota:</p>
+            <div class="group-element-content">
+              {{ order.value?.WholeAmount }}
+            </div>
+          </div>
+          <div class="group-element">
+            <p class="title">Kwota po rabacie:</p>
+            <div class="group-element-content">
+              {{ order.value?.WholeAmount - order.value?.WholeAmount * (order.value?.Discount / 100) }}
+            </div>
+          </div>
+          <div class="group-element">
+            <p class="title">Data zamowienia:</p>
+            <div class="group-element-content">
+              {{ order.value?.OrderDate | date: 'dd.MM.yyyy' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

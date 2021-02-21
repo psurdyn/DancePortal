@@ -1,0 +1,251 @@
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+  margin: 40px 0;
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    max-width: 1320px;
+
+    .form-container {
+      display: flex;
+      flex-direction: column-reverse;
+      width: inherit;
+      max-width: 1320px;
+      border-radius: 4px;
+      border: 2px solid #691A8C;
+
+      form,
+      .background-container {
+        width: 100%;
+      }
+
+      form {
+        padding: 20px;
+
+        .flex-container,
+        .checkbox-container,
+        button {
+          display: flex;
+          margin-top: 30px;
+        }
+
+        .flex-container {
+          flex-direction: column;
+
+          :nth-child(n + 2) {
+            margin-top: 30px;
+          }
+
+          .input-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            .title {
+              color: #dbdbdb;
+              font-size: 12px;
+              text-transform: uppercase;
+              margin: 0 0 5px;
+              padding-left: 10px;
+            }
+          }
+        }
+
+        .checkbox-container {
+          justify-content: space-around;
+          flex-wrap: wrap;
+        }
+
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          color: #000;
+          margin-top: 30px;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+      .background-container {
+        min-height: 550px;
+        background: url("src/assets/registration-background.jpg") no-repeat center center;
+        background-size: cover;
+      }
+    }
+  }
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+select {
+  width: 100%;
+  height: 50px;
+  border: 2px solid #691A8C;
+  border-radius: 4px;
+  padding: 0 21px;
+}
+
+select {
+  cursor: pointer;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 210px;
+  height: 50px;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  background: #691A8C;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.14px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.group-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 150px;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 4px;
+  border: 2px solid #dbdbdb;
+  background: #f1f2f6;
+  position: relative;
+
+  label {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  p {
+    font-weight: bold;
+    user-select: none;
+  }
+
+  input {
+    height: 0;
+    width: 0;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+
+    &.user-white,
+    &.trainer-white,
+    &.owner-white,
+    &.user-purple,
+    &.trainer-purple,
+    &.owner-purple {
+      display: none;
+    }
+  }
+
+  &:hover {
+    border: 2px solid #691A8C;
+    cursor: pointer;
+
+    p {
+      color: #fff;
+    }
+
+    .user-white,
+    .trainer-white,
+    .owner-white {
+      display: block;
+    }
+
+    .user-black,
+    .trainer-black,
+    .owner-black {
+      display: none;
+    }
+  }
+
+  &.checked {
+
+    .user-black,
+    .trainer-black,
+    .owner-black,
+    .user-white,
+    .trainer-white,
+    .owner-white {
+      display: none;
+    }
+
+    .user-purple,
+    .trainer-purple,
+    .owner-purple {
+      display: block;
+    }
+
+    p {
+      color: rgb(105, 26, 140);
+    }
+
+    label {
+      border: 2px solid #691A8C;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  section {
+    min-height: calc(100vh - 80px - 56px - 56px - 90px);
+
+    .wrapper .form-container {
+      flex-direction: row;
+
+      form,
+      .background-container {
+        max-width: 50%;
+      }
+
+      form .flex-container {
+        justify-content: space-between;
+        flex-direction: row;
+
+        :nth-child(n + 2) {
+          margin-top: 0;
+        }
+
+        .input-container {
+          max-width: 48%;
+
+          input,
+          select {
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+  }
+}

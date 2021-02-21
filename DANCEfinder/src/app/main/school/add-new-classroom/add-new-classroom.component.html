@@ -1,0 +1,26 @@
+<section>
+  <header>
+    <img src="assets/close-icon.svg" routerLink="../" alt="icon" />
+  </header>
+  <main>
+    <div class="wrapper">
+      <div class="add-new-classroom-container">
+        <h1>Dodaj salę zajęciową:</h1>
+        <form [formGroup]="addNewClassroomForm">
+          <div class="flex-container">
+            <div class="title-container">
+              <p class="title">Numer:</p>
+              <input type="text" formControlName="number" placeholder="Wpisz nazwę sali..." />
+              <app-input-error
+                *ngIf="addNewClassroomForm.controls.number?.invalid && addNewClassroomForm.controls.number?.touched"
+                [errorText]="errorTextMessages.number">
+              </app-input-error>
+            </div>
+          </div>
+          <button [disabled]="addNewClassroomForm.invalid" (click)="addNewClassroom()">Dodaj salę</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</section>

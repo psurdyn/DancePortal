@@ -1,0 +1,15 @@
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  height: 60px;
+  box-sizing: border-box;
+}
+
+.image-header {
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+}

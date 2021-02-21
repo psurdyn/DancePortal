@@ -1,0 +1,70 @@
+<main>
+  <div class="upper-main">
+    <h1>{{ school.value?.Name }}</h1>
+  </div>
+  <div class="post-date">
+    <p>Data zamieszczenia ogłoszenia: {{ school.value?.date | date: 'dd.MM.yyyy' }}</p>
+  </div>
+  <section class="data-container">
+    <section class="basic-data-container">
+      <h3>Podstawowe informacje</h3>
+      <p><span>Adres:</span> {{ school.value?.Street }}, {{ school.value?.PostalCode }} {{ school.value?.City }}</p>
+      <p><span>Strona internetowa:</span> {{ school.value?.WebAddress }}</p>
+      <p><span>Numer telefonu:</span> {{ school.value?.TelephoneNumber }}</p>
+      <p><span>Adres e-mail:</span> {{ school.value?.EmailAddress }}</p>
+    </section>
+    <section class="logo-container">
+      <img src="assets/dance-icon.svg" alt="icon" />
+      <p class="logo"><span>DANCE</span>finder</p>
+    </section>
+    <section class="action-buttons-container">
+      <button routerLink="./dodaj-kurs" *ngIf="(schoolOwnerPrivileges || allPrivileges) && !useWithoutLogin">
+        Dodaj kurs
+      </button>
+      <button routerLink="./grafik" *ngIf="!(ownerPrivileges || instructorPrivileges || allPrivileges)">
+        <ng-container *ngIf="!useWithoutLogin">Zapisz się na kurs / Grafik</ng-container>
+        <ng-container *ngIf="useWithoutLogin">Grafik</ng-container>
+      </button>
+      <button class="red-button" (click)="deleteSchool()" *ngIf="allPrivileges && !useWithoutLogin">Usuń szkołę</button>
+    </section>
+  </section>
+  <section class="about-school">
+    <h2>O nas:</h2>
+    <p *ngIf="school.value.Description">{{ school.value?.Description }}</p>
+    <p *ngIf="!school.value.Description">Ta szkoła nie posiada opisu.</p>
+  </section>
+  <section class="classrooms-container" *ngIf="(allPrivileges || school.value.Owned) && !useWithoutLogin">
+    <h2>Dostępne kursy:</h2>
+    <p *ngIf="!(courses | async) || (courses | async)?.length === 0">Obecnie nie są dostępne żadne kursy.</p>
+    <ng-container *ngIf="courses | async">
+      <div class="classrooms-content-container">
+        <div class="classroom" *ngFor="let course of (courses | async) || [] | keyvalue | reverse">
+          <p [routerLink]="['/kursy', course.key]" (click)="goToCourse(course)" class="cursor-pointer">
+            <span>Kurs:</span> {{ course.value?.Name }}
+          </p>
+          <div
+            class="delete-classroom"
+            (click)="deleteCourse(course)"
+            *ngIf="(schoolOwnerPrivileges || allPrivileges) && !useWithoutLogin"
+          >
+            <span>X</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </section>
+  <section class="comments-container">
+    <h2>Opinie:</h2>
+    <p *ngIf="((opinions | async) || []).length == 0">Ta szkoła nie posiada obecnie żadnych opinii.</p>
+    <app-comments *ngIf="((opinions | async) || []).length > 0" [opinions]="(opinions | async) || []"></app-comments>
+    <form
+      [formGroup]="opinionForm"
+      *ngIf="!(useWithoutLogin || schoolOwnerPrivileges || ownerPrivileges || allPrivileges || instructorPrivileges)"
+    >
+      <textarea formControlName="opinion" placeholder="Dodaj opinię..."></textarea>
+      <div class="form-wrapper">
+        <button type="button" (click)="sendNewOpinion()">Dodaj opinię</button>
+      </div>
+    </form>
+  </section>
+</main>

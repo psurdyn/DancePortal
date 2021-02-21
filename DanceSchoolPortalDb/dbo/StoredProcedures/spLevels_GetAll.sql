@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE [dbo].[spLevels_GetAll]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT * FROM dbo.Levels;
+END

@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[spKindsOfDances_GetById]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT Id, [Name]
+	FROM dbo.KindsOfDances
+	WHERE Id = @Id;
+END

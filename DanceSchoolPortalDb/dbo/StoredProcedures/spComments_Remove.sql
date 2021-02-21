@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spComments_Remove]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE FROM dbo.Comments
+	WHERE Id = @Id;
+END

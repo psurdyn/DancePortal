@@ -1,0 +1,10 @@
+<section *ngFor="let opinion of opinions | keyvalue | reverse">
+  <p class="opinion">{{ opinion.value?.Text }}</p>
+  <div class="flex-container">
+    <p class="date">{{ date | date: 'dd.MM.yyyy' }}</p>
+    <!-- <p class="reviewer">{{ opinion.value?.Author }}</p> -->
+  </div>
+  <div class="delete-opinion" (click)="deleteOpinion(opinion)" *ngIf="allPrivileges && !useWithoutLogin">
+    <span>X</span>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spStudyGroups_Remove]
+	@Id UNIQUEIDENTIFIER
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE FROM dbo.StudyGroups
+	WHERE Id = @Id;
+END

@@ -1,0 +1,38 @@
+.school-wrapper-background {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  position: absolute;
+  top: 0;
+
+  .school-wrapper {
+    font-family: "Lato", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 3;
+  }
+}
+
+@media (min-width: 768px) {
+  .school-wrapper {
+    position: absolute;
+    left: 0;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .school-wrapper-background {
+    margin-right: auto;
+    margin-left: auto;
+    height: auto;
+  }
+}
+
+
+
